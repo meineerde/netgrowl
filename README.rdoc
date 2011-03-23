@@ -1,0 +1,79 @@
+= netgrowl
+
+Send Growl notifications by UDP in pure Ruby.
+
+== Examples
+
+  ##
+  # Register an application
+  # This has to be done once per client. But *not* once per session.
+  # Registering an application will reset all settings on the client.
+
+  Growl.register("All messages", :application => "My Application")
+
+  # OR
+
+  # Register two identifiers. But only the first is enabled by default here.
+  Growl.register [
+    "Important Stuff",
+    {:identifier => "Debug", :enable => false}
+  ], :application => "My Application"
+
+
+  ##
+  # Send a notification
+
+  Growl.notify {
+    application = "My Application"
+    identifier = "All messages"
+
+    title = "Important!"
+    message = 'Hello World'
+    sticky!
+  }
+
+  # OR
+
+  include Growl
+  notify "Hello there", :application => "My Application"
+
+  # OR
+
+  Growl.notify "Hello!", :application => "My Application", :sticky => true
+
+= License (MIT)
+
+== Short version
+
+    take my code with you
+    and do whatever you want
+    but please don’t blame me
+
+    http://www.aaronsw.com/weblog/000360
+
+== Legal version
+
+Copyright (c) 2011 Holger Just
+
+Parts of this library are based on https://github.com/visionmedia/growl, Copyright (c) 2009 by TJ Holowaychuk <tj@vision-media.ca>
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation
+files (the "Software"), to deal in the Software without
+restriction, including without limitation the rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
